@@ -1,0 +1,170 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   Life OS — 暖色系设计系统
+   理念：舒服、治愈、陪伴感
+   禁止：纯黑、商务风、办公软件风格
+   ============================================================ */
+
+@theme {
+  /* 背景层：从浅到深 */
+  --color-bg: #faf7f2;              /* 奶油白基底 */
+  --color-bg-elevated: #f5f1ea;     /* 浅米色浮动层 */
+  --color-bg-card: #ffffff;         /* 白色卡片 */
+  --color-bg-hover: #f0ebe0;        /* 暖色悬停 */
+  --color-bg-warm: #fdf6f0;         /* 暖杏色底（特殊区块） */
+
+  /* 边框：柔和的灰调 */
+  --color-border: #e8e2d6;          /* 暖灰边框 */
+  --color-border-subtle: #f0ece4;   /* 更淡的边框 */
+
+  /* 文字：暖灰系，不是纯黑 */
+  --color-text: #3d362c;            /* 暖灰主文字 */
+  --color-text-secondary: #8c8275;  /* 莫兰迪灰次级文字 */
+  --color-text-tertiary: #b8afa3;   /* 更淡的三级文字 */
+
+  /* 主色调：鼠尾草绿（sage green） */
+  --color-accent: #8b9d7c;          /* 鼠尾草绿 */
+  --color-accent-hover: #7a8d6b;    /* 深鼠尾草绿 */
+  --color-accent-light: #eef2e7;    /* 鼠尾草绿浅底 */
+
+  /* 功能色：莫兰迪调 */
+  --color-success: #7ba084;         /* 莫兰迪绿 */
+  --color-warning: #d4a96a;         /* 莫兰迪金 */
+  --color-danger: #c48787;          /* 豆沙粉红 */
+
+  /* 辅助色 */
+  --color-blue: #8fa9c4;            /* 莫兰迪蓝 */
+  --color-pink: #c9a0a0;            /* 豆沙粉 */
+  --color-lavender: #b8a9c4;        /* 莫兰迪紫 */
+  --color-peach: #d4b896;           /* 浅杏色 */
+
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC',
+    'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* ============ 基础重置 ============ */
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* iOS 安全区 */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 隐藏滚动条但保留滚动 */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* 输入框无边框默认样式 */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  cursor: pointer;
+  padding: 0;
+}
+
+.h-dvh {
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* 触摸反馈 */
+.tap {
+  transition: opacity 0.15s ease, transform 0.1s ease, background-color 0.15s ease;
+}
+.tap:active {
+  opacity: 0.7;
+  transform: scale(0.97);
+}
+
+/* 渐入动画 */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.25s ease both;
+}
+
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.animate-slide-up {
+  animation: slide-up 0.28s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-overlay {
+  animation: overlay-in 0.2s ease both;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* 卡片微阴影 */
+.shadow-card {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+}
+
+/* 进度条通用 */
+.progress-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-border-subtle);
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--color-accent);
+  transition: width 0.5s ease;
+}
